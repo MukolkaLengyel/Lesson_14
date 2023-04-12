@@ -65,7 +65,7 @@ namespace Lesson_14_HW
             //CopyTo(arr) - copies stack to array
             public void CopyTo(T[] arr, int index)
             {
-                Array.Copy(_items, arr, index);
+                this.stack.CopyTo(arr, index);
             }
         }
     }
