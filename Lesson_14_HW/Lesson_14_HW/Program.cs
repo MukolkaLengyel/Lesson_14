@@ -20,14 +20,9 @@ namespace Lesson_14_HW
             }
 
             //Push(obj), adds obj at the top of stack
-            public void Push (T obj) 
+            public void Push(T obj)
             {
-                if (_top == _items.Length - 1) 
-                { 
-                    Array.Resize(ref _items, _items.Length * 2);
-                    _top++;
-                    _items[_top] = obj;    
-                }
+                this.stack.Add(obj);
             }
 
             //Pop, returns top element of stack & removes it
@@ -38,6 +33,7 @@ namespace Lesson_14_HW
                     var PopItem = _items[_top];
                     _top--;
                     _items[_top] = PopItem;
+                    return PopItem;
                 }
             }
 
