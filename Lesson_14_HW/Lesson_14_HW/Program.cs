@@ -7,66 +7,58 @@ namespace Lesson_14_HW
 {
     internal class Program
     {
-        //Generic Stack<T> Class
-        public class Stack<T>
-        {
-            internal T[] _items;
-            internal int _top;
+      
+    public class Stack<T>
+    {
+    private List<T> items = new List<T>();
 
-            public Stack()
-            {
-                _items = new T[5];
-                _top = -1;
-            }
-
-            //Push(obj), adds obj at the top of stack
-            public void Push(T obj)
-            {
-                this.stack.Add(obj);
-            }
-
-            //Pop, returns top element of stack & removes it
-            public void Pop()
-            {
-                if ( _top == -1)
-                {
-                    var PopItem = _items[_top];
-                    _top--;
-                    _items[_top] = PopItem;
-                    return PopItem;
-                }
-            }
-
-            //Clear() - clear stack
-            public void Clear()
-            {
-                Array.Clear(_items, 0, _items.Length);
-                _top = -1;
-            }
-
-            //Count - property return number of elements
-            public int Count()
-            {
-                var count = _top + 1;
-                return count;
-            }
-
-            
-            //Peek() - returns top element but doesn’t remove it
-            public void Peek()
-            {
-                if (_top == -1)
-                {
-                    var PeekItem = _items[_top];
-                    PeekItem = _items[_top];
-                }
-            }
-
-            //CopyTo(arr) - copies stack to array
-            public void CopyTo(T[] arr, int index)
-            {
-                this.stack.CopyTo(arr, index);
-            }
-        }
+    public void Push(T obj)
+    {
+        items.Add(obj);
     }
+
+    public T Pop()
+    {
+        if (items.Count == 0)
+        {
+            throw new InvalidOperationException("Stack is empty");
+        }
+
+        T obj = items[items.Count - 1];
+        items.RemoveAt(items.Count - 1);
+        return obj;
+    }
+
+    public void Clear()
+    {
+        items.Clear();
+    }
+
+    public int Count
+    {
+        get { return items.Count; }
+    }
+
+    public T Peek()
+    {
+        if (items.Count == 0)
+        {
+            throw new InvalidOperationException("Stack is empty");
+        }
+
+        return items[items.Count - 1];
+    }
+
+    public void CopyTo(T[] arr)
+    {
+        if (arr == null)
+        {
+            throw new ArgumentNullException(nameof(arr));
+        }
+
+        items.CopyTo(arr);
+    }
+   }
+
+  }
 }
